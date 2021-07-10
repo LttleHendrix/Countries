@@ -27,12 +27,7 @@ function searchCountry () {
             console.log(data);
             displayResults(data);
         }
-
     })
-    // fetch('https://restcountries.eu/rest/v2/name/' + searchBar)
-    //     .then(response => displayResults(response.json()))
-    //     .then(data => console.log(data));
-        
 }
 
 function fetchInfo () {
