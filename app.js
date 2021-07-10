@@ -13,10 +13,25 @@ const searchButton = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchCountry);
 
 function searchCountry () {
-    fetch('https://restcountries.eu/rest/v2/all')
-        .then(response => response.json());
-    let searchBar = document.getElementById('searchBar');
+    let searchBar = document.getElementById('searchBar').value;
     console.log(searchBar);
+    $.ajax({
+        url: 'https://restcountries.eu/rest/v2/name/' + searchBar,
+        type: 'GET',
+        dataType: 'json',
+        error: function() {
+            console.log('Error! Unable to search name');
+        },
+        success: function(data) {
+            console.log('Success!');
+            console.log(data);
+            displayResults(data);
+        }
+
+    })
+    // fetch('https://restcountries.eu/rest/v2/name/' + searchBar)
+    //     .then(response => displayResults(response.json()))
+    //     .then(data => console.log(data));
         
 }
 
@@ -27,11 +42,15 @@ function fetchInfo () {
         .catch(() => alert('API Could not be reached at this time'))
 }
 
+function displayResults(results) {
+    // Use jQuery .Append to add new Div's with country information
+}
+
 function displayUi (country) {
     const { name, capital, languages, currencies, population, region, flag} = country[counter]
     const template = `
-    <div>
-    <h1 id="h ead">${name}</h1>
+    <div class="country">
+    <h1 id="head">${name}</h1>
     <p id="content"> -This is a country with its capital in ${capital}.
     <br>-The language(s) spoken here are ${languages[0].name}.
     <br>-The nation of ${name} is
@@ -41,7 +60,7 @@ function displayUi (country) {
     </p>
     <img id="flag" src="${flag}" class="center" alt="" width="600" height="400">
     </div>
-    `
+    `;
     counter = counter + 1;
     document.getElementById('template').innerHTML = template
 }
