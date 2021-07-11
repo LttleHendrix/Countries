@@ -39,6 +39,32 @@ function fetchInfo () {
 
 function displayResults(results) {
     // Use jQuery .Append to add new Div's with country information
+    var group = `<div id="theResults class="group">Here are the search results</div>`;
+
+    for (let i=0; i<results.length; i++) {
+
+        const { name, capital, languages, currencies, population, region, flag} = results[i]
+        const template = `
+        <div class="country">
+        <h1 id="head">${name}</h1>
+        <p id="content"> -This is a country with its capital in ${capital}.
+        <br>-The language(s) spoken here are ${languages[0].name}.
+        <br>-The nation of ${name} is
+        located in the ${region} region with a population of ${population} and uses ${currencies[0].name}
+        as it's currency
+        <br><br>Here is a flag of the country<br><br>
+        </p>
+        <img id="flag" src="${flag}" class="center" alt="" width="600" height="400">
+        </div>
+        `;
+
+        $(document).ready(function() {
+            $("#theResults".append(template));
+        });
+    }
+    
+    document.getElementById('template').innerHTML = group
+
 }
 
 function displayUi (country) {
