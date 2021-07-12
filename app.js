@@ -39,7 +39,7 @@ function fetchInfo () {
 
 function displayResults(results) {
     // Use jQuery .Append to add new Div's with country information
-    var group = `<div id="theResults class="group">Here are the search results</div>`;
+    var group = `<div id="theResults" class="group">Here are the search results</div>`;
 
     for (let i=0; i<results.length; i++) {
         console.log("Adding country number "+i);
@@ -71,7 +71,7 @@ function displayResults(results) {
 }
 
 function displayUi (country) {
-    const { name, capital, languages, currencies, population, region, flag} = country[counter]
+    const { name, capital, languages, currencies, population, region, flag} = country[Math.floor(Math.random() * country.length)];
     const template = `
     <div class="country">
     <h1 id="head">${name}</h1>

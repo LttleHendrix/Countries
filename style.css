@@ -52,5 +52,11 @@ p {
 
 .country {
     margin: 20px;
+    color: black;
+}
+
+#fetch {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
