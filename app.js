@@ -21,6 +21,7 @@ function searchCountry () {
         dataType: 'json',
         error: function() {
             console.log('Error! Unable to search name');
+            document.getElementById('template').innerHTML = "No search results found";
         },
         success: function(data) {
             console.log('Success!');
@@ -39,10 +40,9 @@ function fetchInfo () {
 
 function displayResults(results) {
     // Use jQuery .Append to add new Div's with country information
-    var group = `<div id="theResults" class="group">Here are the search results</div>`;
+    var group = `<div id="theResults" class="group"></div>`;
 
     for (let i=0; i<results.length; i++) {
-        console.log("Adding country number "+i);
 
         const { name, capital, languages, currencies, population, region, flag} = results[i]
         const template = `
@@ -60,7 +60,6 @@ function displayResults(results) {
         `;
 
         $(document).ready(function() {
-            $("#theResults").append("Country "+i);
             $("#theResults").append(template);
         });
     }

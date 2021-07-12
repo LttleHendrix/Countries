@@ -51,12 +51,22 @@ p {
 }
 
 .country {
-    margin: 20px;
-    color: black;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: black;
+    padding-left: 2px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 30px;
+    outline-color: cornsilk;
+    outline-width: 20px;
+    outline-style: auto;
 }
 
 #fetch {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+
 
