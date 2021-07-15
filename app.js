@@ -1,6 +1,9 @@
 
 let counter = 0;
 
+let favorites = [];
+window.localStorage.setItem('favorites', favorites);
+
 
 fetch('https://restcountries.eu/rest/v2/all')
     .then(response => response.json())
@@ -11,6 +14,13 @@ myButton.addEventListener('click', fetchInfo);
 
 const searchButton = document.getElementById('searchButton');
 searchButton.addEventListener('click', searchCountry);
+
+document.querySelectorAll('.favoriteButton').forEach(item => {
+    item.addEventListener('click', event => {
+        console.log("addFavorite")
+    })
+})
+
 
 function searchCountry () {
     let searchBar = document.getElementById('searchBar').value;
@@ -44,10 +54,13 @@ function displayResults(results) {
 
     for (let i=0; i<results.length; i++) {
 
-        const { name, capital, languages, currencies, population, region, flag} = results[i]
-        const template = `
+        let { name, capital, languages, currencies, population, region, flag} = results[i]
+        let template = `
         <div class="country">
         <h1 id="head">${name}</h1>
+        <div id="favoriteWrapper">
+        <button class="favoriteButton" onclick="addFavorite(${name})">Add Country to Favorites</button>
+        </div>
         <p id="content"> -This is a country with its capital in ${capital}.
         <br>-The language(s) spoken here are ${languages[0].name}.
         <br>-The nation of ${name} is
@@ -67,6 +80,12 @@ function displayResults(results) {
     console.log(group);
     document.getElementById('template').innerHTML = group
 
+
+}
+
+function addFavorite(newFavorite) {
+    console.log("Trying to add favorite");
+    console.log(newFavorite);
 }
 
 function displayUi (country) {
