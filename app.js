@@ -59,7 +59,7 @@ function displayResults(results) {
         <div class="country">
         <h1 id="head">${name}</h1>
         <div id="favoriteWrapper">
-        <button class="favoriteButton" onclick="addFavorite(${name})">Add Country to Favorites</button>
+        <button class="favoriteButton" onclick="addFavorite('${name}')">Add Country to Favorites</button>
         </div>
         <p id="content"> -This is a country with its capital in ${capital}.
         <br>-The language(s) spoken here are ${languages[0].name}.
@@ -83,9 +83,44 @@ function displayResults(results) {
 
 }
 
-function addFavorite(newFavorite) {
+function addFavorite(newCountry) {
     console.log("Trying to add favorite");
-    console.log(newFavorite);
+    console.log(newCountry);
+
+    let favorites = [];
+    // retrieves old data if there is old data / already one or more favorite countries
+    if(window.localStorage.getItem('favorites') !== null && window.localStorage.getItem('favorites').length != 0) {
+        console.log("Apparently favorites is not null and is "+window.localStorage.getItem('favorites'));
+
+        // retrieves favorites as a string..?
+        console.log(window.localStorage.getItem('favorites') + window.localStorage.getItem('favorites').dataType);
+        let retrievedFavorites = JSON.parse(window.localStorage.getItem("favorites"));
+        console.log(retrievedFavorites);
+
+
+        // convert string to array
+
+
+
+        // add new country below 
+    }
+
+    favorites.push((newCountry));
+    console.log()
+
+    window.localStorage.setItem('favorites', favorites);
+
+
+
+
+}
+
+function showFavorites() {
+    console.log(window.localStorage.getItem('favorites'));
+}
+
+function undoFavorite(toUndo) {
+
 }
 
 function displayUi (country) {
