@@ -7,7 +7,7 @@ window.localStorage.setItem('favorites', favorites);
 
 fetch('https://restcountries.eu/rest/v2/all')
     .then(response => response.json())
-    .then(data => console.log(data));
+    
 
 const myButton = document.getElementById('fetch');
 myButton.addEventListener('click', fetchInfo);
@@ -24,7 +24,6 @@ document.querySelectorAll('.favoriteButton').forEach(item => {
 
 function searchCountry () {
     let searchBar = document.getElementById('searchBar').value;
-    console.log(searchBar);
     $.ajax({
         url: 'https://restcountries.eu/rest/v2/name/' + searchBar,
         type: 'GET',
@@ -34,8 +33,6 @@ function searchCountry () {
             document.getElementById('template').innerHTML = "No search results found";
         },
         success: function(data) {
-            console.log('Success!');
-            console.log(data);
             displayResults(data);
         }
     })
@@ -77,7 +74,6 @@ function displayResults(results) {
         });
     }
 
-    console.log(group);
     document.getElementById('template').innerHTML = group
 
 
