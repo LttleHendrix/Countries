@@ -90,8 +90,8 @@ function addFavorite(newCountry) {
 
         // retrieves favorites as a string..?
         console.log(window.localStorage.getItem('favorites') + window.localStorage.getItem('favorites').dataType);
-        let retrievedFavorites = JSON.parse(window.localStorage.getItem("favorites"));
-        console.log(retrievedFavorites);
+        let retrievedFavorites =  window.localStorage.getItem('favorites');// JSON.parse();
+        console.log(retrievedFavorites + 'hiii');
 
 
         // convert string to array
@@ -101,8 +101,11 @@ function addFavorite(newCountry) {
         // add new country below 
     }
 
-    favorites.push((newCountry));
-    console.log()
+    console.log('Before: ', favorites);
+    favorites.push(newCountry);
+    window.localStorage.setItem('favorites', favorites);
+    console.log('After: ', favorites);
+    console.log(window.localStorage.getItem('favorites'));
 
     window.localStorage.setItem('favorites', favorites);
 
